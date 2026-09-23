@@ -1,0 +1,33 @@
+name: Build IPA
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: XcodeGen kur ve projeyi oluştur
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Derle
+        run: |
+          xcodebuild -project DikDur.xcodeproj -target DikDur \
+            -configuration Release -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: IPA paketle
+        run: |
+          mkdir Payload
+          cp -R build/Release-iphoneos/DikDur.app Payload/
+          zip -qr DikDur.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DikDur-ipa
+          path: DikDur.ipa
