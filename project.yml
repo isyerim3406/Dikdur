@@ -7,9 +7,13 @@ targets:
   DikDur:
     type: application
     platform: iOS
-    sources: [Sources]
+    sources:
+      - DikDurApp.swift
+      - ContentView.swift
+      - PostureMonitor.swift
+      - ToneEngine.swift
     info:
-      path: Sources/Info.plist
+      path: Info.plist
       properties:
         CFBundleDisplayName: DikDur
         UILaunchScreen: {}
