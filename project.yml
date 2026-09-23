@@ -1,0 +1,24 @@
+name: DikDur
+options:
+  bundleIdPrefix: com.kisisel
+  deploymentTarget:
+    iOS: "17.0"
+targets:
+  DikDur:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: DikDur
+        UILaunchScreen: {}
+        NSMotionUsageDescription: "Duruşunu AirPods sensörüyle takip etmek için."
+        UIBackgroundModes: [audio]
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kisisel.dikdur
+        SWIFT_VERSION: "5.0"
+        CODE_SIGNING_ALLOWED: "NO"
+        CODE_SIGN_IDENTITY: ""
